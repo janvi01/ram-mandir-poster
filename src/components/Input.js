@@ -1,7 +1,13 @@
 import React from "react";
 import Dropzone from "react-dropzone";
 
-const Input = ({ onDrop, setUserText }) => {
+const Input = ({ onDrop, setUserText, updateTemplate }) => {
+  const handleTextChange = (e) => {
+    const newText = e.target.value;
+    setUserText(newText);
+    updateTemplate(newText); // Callback to update the template
+  };
+
   return (
     <div>
       <div className="m-4">
@@ -11,7 +17,7 @@ const Input = ({ onDrop, setUserText }) => {
         <input
           type="text"
           id="userText"
-          onChange={(e) => setUserText(e.target.value)}
+          onChange={handleTextChange}
           className="border-2 border-gray-300 p-2 rounded"
         />
       </div>

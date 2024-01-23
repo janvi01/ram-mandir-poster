@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Input from "./components/Input";
+import TemplateDisplay from "./components/TemplateDisplay";
 import Download from "./components/Download";
 import ramMandirTemplate from "./ram_mandir_template.jpg";
-import TemplateDisplay from "./components/TemplateDisplay";
 
 const App = () => {
   const [resultImage, setResultImage] = useState(null);
@@ -41,7 +41,7 @@ const App = () => {
         ctx.font = "bold 50px Arial";
         ctx.textAlign = "center";
         ctx.fillStyle = "orange";
-        ctx.fillText(userText, canvas.width / 2, canvas.height - 30);
+        ctx.fillText(userText, canvas.width / 2, canvas.height - 50);
 
         const resultDataURL = canvas.toDataURL("image/png");
         setResultImage(resultDataURL);
@@ -62,12 +62,36 @@ const App = () => {
     }
   };
 
+  const updateTemplate = (text) => {
+    if (templateLoaded) {
+      const canvas = document.createElement("canvas");
+      canvas.width = templateImage.width;
+      canvas.height = templateImage.height;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(templateImage, 0, 0);
+
+      // user - inputted text styling
+      ctx.font = "bold 50px Arial";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "orange";
+      ctx.fillText(text, canvas.width / 2, canvas.height - 50);
+
+      const updatedTemplateDataURL = canvas.toDataURL("image/png");
+      setResultImage(updatedTemplateDataURL);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
       <h1 className="text-4xl font-bold mb-8">
         Ram Mandir Inauguration Poster Maker
       </h1>
-      <Input onDrop={handleDrop} setUserText={setUserText} />
+      <Input
+        onDrop={handleDrop}
+        setUserText={setUserText}
+        updateTemplate={updateTemplate}
+      />
       <TemplateDisplay
         templateLoaded={templateLoaded}
         resultImage={resultImage}
