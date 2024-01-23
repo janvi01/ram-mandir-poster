@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Dropzone from "react-dropzone";
+import Input from "./components/Input";
+import TemplateDisplay from "./components/TemplateDisplay";
+import Download from "./components/Download";
 import ramMandirTemplate from "./ram_mandir_template.jpg";
 
 const App = () => {
@@ -65,61 +67,13 @@ const App = () => {
       <h1 className="text-4xl font-bold mb-8">
         Ram Mandir Inauguration Poster Maker
       </h1>
-      {templateLoaded && (
-        <div>
-          <div className="m-4">
-            <label htmlFor="userText" className="mr-2">
-              Add your tagline/name :
-            </label>
-            <input
-              type="text"
-              id="userText"
-              value={userText}
-              onChange={(e) => setUserText(e.target.value)}
-              className="border-2 border-gray-300 p-2 rounded"
-            />
-          </div>
-          <Dropzone onDrop={handleDrop}>
-            {({ getRootProps, getInputProps }) => (
-              <div
-                {...getRootProps()}
-                className="border-2 border-dashed border-gray-300 rounded-md p-4 cursor-pointer"
-              >
-                <input {...getInputProps()} />
-                <p className="text-gray-500">
-                  Drag/drop your photo here, or click to select a file
-                </p>
-              </div>
-            )}
-          </Dropzone>
-          <img
-            src={ramMandirTemplate}
-            alt="Template"
-            className="max-w-full m-4"
-            style={{
-              display: resultImage ? "none" : "block",
-              height: "auto",
-              maxHeight: "50vh",
-            }}
-          />
-        </div>
-      )}
-      {resultImage && (
-        <div className="mt-8">
-          <img
-            src={resultImage}
-            alt="Result"
-            className="max-w-full mb-4"
-            style={{ height: "auto", maxHeight: "50vh" }}
-          />
-          <button
-            onClick={handleDownload}
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-          >
-            Download Poster
-          </button>
-        </div>
-      )}
+      <Input onDrop={handleDrop} setUserText={setUserText} />
+      <TemplateDisplay
+        templateLoaded={templateLoaded}
+        resultImage={resultImage}
+        templateSrc={ramMandirTemplate}
+      />
+      <Download resultImage={resultImage} handleDownload={handleDownload} />
     </div>
   );
 };
