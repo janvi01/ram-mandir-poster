@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Input from "./components/Input";
 import TemplateDisplay from "./components/TemplateDisplay";
 import Download from "./components/Download";
-import ramMandirTemplate from "./ram_mandir_template.jpg";
-import bgImage from "./bg.jpeg";
+import ramMandirTemplate from "./assets/ram_mandir_template.jpg";
+import bgImage from "./assets/bg.jpeg";
 
 const App = () => {
   const [resultImage, setResultImage] = useState(null);
