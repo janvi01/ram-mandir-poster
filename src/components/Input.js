@@ -9,7 +9,7 @@ const Input = ({ onDrop, setUserText, updateTemplate }) => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center w-3/4 mx-auto">
       <div className="my-4 w-full">
         <label htmlFor="userText" className="mr-2">
           Add your tagline/name :
@@ -18,14 +18,14 @@ const Input = ({ onDrop, setUserText, updateTemplate }) => {
           type="text"
           id="userText"
           onChange={handleTextChange}
-          className="border-2 border-gray-300 px-4 py-2 rounded"
+          className="border-2 border-gray-300 px-4 py-2 rounded w-full"
         />
       </div>
-      <Dropzone onDrop={onDrop}>
+      <Dropzone onDrop={onDrop} className="w-full">
         {({ getRootProps, getInputProps }) => (
           <div
             {...getRootProps()}
-            className="border-2 border-dashed border-gray-300 rounded-md p-4 cursor-pointer"
+            className="border-2 border-dashed border-gray-300 rounded-md p-4 cursor-pointer w-full"
           >
             <input {...getInputProps()} />
             <p className="text-gray-500">

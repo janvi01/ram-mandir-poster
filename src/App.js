@@ -3,6 +3,7 @@ import Input from "./components/Input";
 import TemplateDisplay from "./components/TemplateDisplay";
 import Download from "./components/Download";
 import ramMandirTemplate from "./ram_mandir_template.jpg";
+import bgImage from "./bg.jpeg";
 
 const App = () => {
   const [resultImage, setResultImage] = useState(null);
@@ -83,21 +84,26 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mb-4 text-center">
-        Ram Mandir Inauguration Poster Maker
-      </h1>
-      <Input
-        onDrop={handleDrop}
-        setUserText={setUserText}
-        updateTemplate={updateTemplate}
-      />
-      <TemplateDisplay
-        templateLoaded={templateLoaded}
-        resultImage={resultImage}
-        templateSrc={ramMandirTemplate}
-      />
-      <Download resultImage={resultImage} handleDownload={handleDownload} />
+    <div
+      className="min-h-screen bg-gray-100 flex flex-col items-center justify-center"
+      style={{ backgroundImage: `url(${bgImage})`, backgroundSize: "cover" }}
+    >
+      <div className="bg-white p-8 rounded-md shadow-lg max-w-2xl w-full">
+        <h1 className="text-4xl font-bold mb-4 text-center">
+          Ram Mandir Inauguration Poster Maker
+        </h1>
+        <Input
+          onDrop={handleDrop}
+          setUserText={setUserText}
+          updateTemplate={updateTemplate}
+        />
+        <TemplateDisplay
+          templateLoaded={templateLoaded}
+          resultImage={resultImage}
+          templateSrc={ramMandirTemplate}
+        />
+        <Download resultImage={resultImage} handleDownload={handleDownload} />
+      </div>
     </div>
   );
 };
