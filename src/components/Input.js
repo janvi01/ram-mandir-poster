@@ -10,7 +10,7 @@ const Input = ({ onDrop, setUserText, updateTemplate }) => {
 
   return (
     <div>
-      <div className="m-4">
+      <div className="my-4 w-full">
         <label htmlFor="userText" className="mr-2">
           Add your tagline/name :
         </label>
@@ -18,7 +18,7 @@ const Input = ({ onDrop, setUserText, updateTemplate }) => {
           type="text"
           id="userText"
           onChange={handleTextChange}
-          className="border-2 border-gray-300 p-2 rounded"
+          className="border-2 border-gray-300 px-4 py-2 rounded"
         />
       </div>
       <Dropzone onDrop={onDrop}>
