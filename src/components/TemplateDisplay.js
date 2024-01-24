@@ -8,7 +8,7 @@ const TemplateDisplay = ({ templateLoaded, resultImage, templateSrc }) => {
           <img
             src={templateSrc}
             alt="Template"
-            className="max-w-full m-4"
+            className="max-w-full mb-4 mt-4"
             style={{
               display: resultImage ? "none" : "block",
               height: "auto",
